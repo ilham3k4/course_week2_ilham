@@ -52,3 +52,50 @@ If you do desire to go in-depth on vim, you can do one of two things. One is to 
 ![GitHub Light](https://s.yimg.com/uu/api/res/1.2/FHOZT3ho7HV7HJiqnOO85w--~B/Zmk9ZmlsbDtoPTQ0MTt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/BFH48vOvKgtQpO7v.IDCSA--~B/aD0zOTI7dz02MDA7YXBwaWQ9eXRhY2h5b24-/https://www.blogcdn.com/www.engadget.com/media/2012/06/vimtitle.jpg.cf.webp)
 
 # Files, Pipes, and Permissions
+### Interacting with Files
+A core concept of computing in general is files but in particular when it comes to navigating a command line. In this section we're going to go over some of the core programs you'll want to know so you can interact with files in Linux : 
+1. `less`. `less` is a program for reading files.
+2. `man`. it will show manual for a command. If you run `man less` it will show you the manual for `less`.
+3. `cat`. `cat` is short for concatenate because it concatenates the file to the standard output. Similar to `less` but all `cat` does is read the entire file and output it.
+4. `head` / `tail`. Head will read the first lines of a file and out put them and tail will read the last lines of a file and output them.
+5. `mkdir`. mkdir makes a new directory/folder.
+6. `touch`. `touch` create a new, empty file.
+7. `rm`. Remove a file.
+8. `cp`. `cp` is short for copy.
+9. `mv`. `mv` stands for move. This how you move a file from one place to another, or how you rename a file.
+10. `tar`. `tar` is short for tape archive and it initially used to prepare files to be backed up to a magnetic tape archive but it became useful to just group together files in single files as a tarball (like a zip file).
+
+# Wildcards and Replacements
+### Wilcards
+A wildcard is a symbol that takes the place of an unknown character or set of characters. Commonly used wildcards are the asterisk ( `*` ) and the question mark ( `?` ). Depending on the software or the search engine you are using, other wildcard characters may be defined.
+### Expansions
+Expansions `{}` used to process multiple command at once, creating files or echo.
+```
+creating three files at once :
+touch file{4,5,6}.txt
+touch {Aisha,Lanie,Joumana,Krista}-profile.txt
+
+echo at once :
+echo {a..z} # prints a to z
+echo {z..a} # reverse order
+echo {0..100..2} # prints every other (aka even) number from 0 to 100
+echo {100..0..5} # prints every 5th number in reverse order from 100 to 0
+echo {a..z}{1..5} # prints out a1 a2 a3 a4 a5 b1 b2 b3 <etc>
+```
+# Streams and Pipes
+### Streams
+Linux has an interesting concept where basically all input and output (which are text) are actually streams of data/text. Like plumbing pipes where you can connect and disconnect sections to redirect water to different places, so too can you connect and disconnect streams of data. There are three standard streams :
+1. stdout (said standard output or standard out).
+2. stdin (said standard input or standard in).
+3. stderr (said standard error or standard err).
+### Pipes
+One of the most powerful shell operators is the pipe (`|`). The pipe takes output from one command and uses it as input for another. And, you're not limited to a single piped command—you can stack them as many times as you like, or until you run out of output or file descriptors.
+# Users, Groups, and Permissions
+- User: the owner of the file (person who created the file).
+- Group: the group can contain multiple users. Therefore, all users in that group will have the same permissions. It makes things easier than assign permission for every user you want.
+### Permissions
+Every file and directory in your UNIX/Linux system has following 3 permissions defined for all the 3 owners discussed above.
+
+- Read: This permission give you the authority to open and read a file. Read permission on a directory gives you the ability to lists its content.
+- Write: The write permission gives you the authority to modify the contents of a file. The write permission on a directory gives you the authority to add, remove and rename files stored in the directory. Consider a scenario where you have to write permission on file but do not have write permission on the directory where the file is stored. You will be able to modify the file contents. But you will not be able to rename, move or remove the file from the directory.
+- Execute: In Windows, an executable program usually has an extension “.exe” and which you can easily run. In Unix/Linux, you cannot run a program unless the execute permission is set. If the execute permission is not set, you might still be able to see/modify the program code(provided read & write permissions are set), but not run it.
